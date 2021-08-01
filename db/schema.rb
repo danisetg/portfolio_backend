@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_01_034451) do
+ActiveRecord::Schema.define(version: 2021_08_01_194807) do
 
   create_table "attributes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "bulletpoints", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "labor_id", null: false
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["labor_id"], name: "index_bulletpoints_on_labor_id"
   end
 
   create_table "labors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -36,4 +44,5 @@ ActiveRecord::Schema.define(version: 2021_08_01_034451) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "bulletpoints", "labors"
 end
