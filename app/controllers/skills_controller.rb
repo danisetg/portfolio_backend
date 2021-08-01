@@ -1,5 +1,6 @@
 class SkillsController < ApplicationController
     def create
+        p request.remote_ip
         @skill = Skill.new(skill_params)
         if @skill.save
             render json: @skill, status: :created
