@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_01_194807) do
+ActiveRecord::Schema.define(version: 2021_08_01_223246) do
 
   create_table "attributes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 2021_08_01_194807) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["labor_id"], name: "index_bulletpoints_on_labor_id"
+  end
+
+  create_table "groups", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "labors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -42,7 +48,10 @@ ActiveRecord::Schema.define(version: 2021_08_01_194807) do
     t.integer "percent"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "group_id", null: false
+    t.index ["group_id"], name: "index_skills_on_group_id"
   end
 
   add_foreign_key "bulletpoints", "labors"
+  add_foreign_key "skills", "groups"
 end
