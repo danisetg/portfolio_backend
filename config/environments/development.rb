@@ -63,6 +63,8 @@ Rails.application.configure do
   host = 'http://localhost:3000' #replace with your own url
   config.action_mailer.default_url_options = { host: host }
 
+  config.hosts << "api.danisetportfolio.online"
+
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
